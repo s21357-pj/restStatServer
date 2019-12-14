@@ -14,7 +14,7 @@ using namespace Pistache;
 std::string getpath()
 {
     char result[ PATH_MAX ];
-    int count = readlink( "/proc/self/exe", result, PATH_MAX );
+    unsigned int count = readlink( "/proc/self/exe", result, PATH_MAX );
     if (count > 0) {
       	return std::string(result, count-14);
     }
