@@ -4,7 +4,9 @@ Use pistache C++ library.
 
 # Installation from source code:
 ./configure
+
 make
+
 sudo make install
 
 # Installation from rpm build:
