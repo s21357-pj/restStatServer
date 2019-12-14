@@ -3,6 +3,7 @@
     Use pistache C++ library.
 
 # Installation from source code:
+    scl enable devtoolset-7 bash
     ./configure
     make
     sudo make install
