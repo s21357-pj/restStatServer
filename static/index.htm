@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Memory usage chart</title>
+	<script src="jquery.min.js"></script>
+	<script src="Chart.min.js"></script>
+	<script src="utils.js"></script>
+	<style>
+		canvas{
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
+</head>
+
+<body>
+	<center>
+		<div style="width: 75%; left: 50%;">
+	    <div style="width:60%;">
+		    <canvas id="canvas1"></canvas>
+	    </div>
+	    <div style="width:60%;">
+		    <canvas id="canvas2"></canvas>
+	    </div>
+    </div>
+    </center>
+	<script>
+	var arrMem = new Array();
+	var setMem = new Array();
+	var arrCpu = new Array();
+	var setCpu = new Array();
+    window.chartColors = {
+  	    green: 'rgb(75, 192, 192)',
+    };
+
+	function loadFromBackend() {
+		$.ajax({
+
+			url: "/stats",
+			type: 'GET',
+			cache: false,
+			success: function (result) {
+
+                //  alert(jQuery.dataType);
+                if (result) {
+                	//alert(result[0]);
+                	var dd = JSON.parse(result);
+                    //alert(dd.length);
+                    for (let key in dd)
+                    {
+                    	arrMem[key] = dd[key].mem;
+                    	setMem[key] = ' ';
+                    	arrCpu[key] = dd[key].cpu;
+                    	setCpu[key] = ' ';
+                    }
+                }
+
+            },
+        });	
+	};
+
+    loadFromBackend();
+	var config1 = {
+			type: 'line',
+			data: {
+				labels: setMem,
+				datasets: [{
+					label: '% memory',
+					backgroundColor: window.chartColors.green,
+					borderColor: window.chartColors.green,
+					data: arrMem,
+					fill: true,
+				}]
+			},
+			options: {
+				responsive: true,
+				animation: false,
+				title: {
+					display: true,
+					text: 'Memory usage chart'
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							min: 0,
+							max: 100
+						}
+					}]
+				}
+			}
+		};
+
+	var config2 = {
+			type: 'line',
+			data: {
+				labels: setCpu,
+				datasets: [{
+					label: '% CPU',
+					backgroundColor: window.chartColors.green,
+					borderColor: window.chartColors.green,
+					data: arrCpu,
+					fill: true,
+				}]
+			},
+			options: {
+				responsive: true,
+				animation: false,
+				title: {
+					display: true,
+					text: 'CPU usage chart'
+				},
+				scales: {
+					yAxes: [{
+						ticks: {
+							min: 0,
+							max: 100
+						}
+					}]
+				}
+			}
+		};
+		window.onload = function() {
+			var ctx1 = document.getElementById('canvas1').getContext('2d');
+			window.myLine1 = new Chart(ctx1, config1);
+			var ctx2 = document.getElementById('canvas2').getContext('2d');
+			window.myLine2 = new Chart(ctx2, config2);
+		};
+		setInterval(function(){ 
+              loadFromBackend();
+              window.myLine1.update();
+              window.myLine2.update();
+	    }, 1000);
+	</script>
+</body>
+
+</html>
