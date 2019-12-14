@@ -13,15 +13,11 @@ sudo make install
 sudo rpm -Uvh restStatServer-0.1.0-1.x86_64.rpm
 
 # Usage: 
-restStatServer [port] [threads]
-
-Default: 80 port and 2 threads.
-
-For execute server application on tcp port 80
-
-you should have superuser permissions.
-
-Otherwise you can execute application on underprivileged ports > 1024
+    restStatServer [port] [threads]
+    Default: 80 port and 2 threads.
+    For execute server application on tcp port 80
+    you should have superuser permissions.
+    Otherwise you can execute application on underprivileged ports > 1024
 
 # Examples:
        sudo restStatServer
