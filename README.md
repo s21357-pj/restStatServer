@@ -8,7 +8,7 @@
     make
     sudo make install
     
-    For CentOS use: 
+    For CentOS 7 and RedHat based OS use: 
     scl enable devtoolset-7 bash
     
 # Installation from rpm build:
