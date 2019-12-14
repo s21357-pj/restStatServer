@@ -1,13 +1,16 @@
 # GNU RestAPI Statistic Server v. 0.1.0
-    PRG1 project
+    PRG1 project.
     Use pistache C++ library.
+   
 
-# Installation from source code:
-    scl enable devtoolset-7 bash
+# Installation from source code:    
     ./configure
     make
     sudo make install
-
+    
+    For CentOS use: 
+    scl enable devtoolset-7 bash
+    
 # Installation from rpm build:
     sudo rpm -Uvh restStatServer-0.1.0-1.x86_64.rpm
 
