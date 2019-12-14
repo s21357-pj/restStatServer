@@ -1,16 +1,14 @@
 # GNU RestAPI Statistic Server v. 0.1.0
-PRG1 project
-Use pistache C++ library.
+    PRG1 project
+    Use pistache C++ library.
 
 # Installation from source code:
-./configure
-
-make
-
-sudo make install
+    ./configure
+    make
+    sudo make install
 
 # Installation from rpm build:
-sudo rpm -Uvh restStatServer-0.1.0-1.x86_64.rpm
+    sudo rpm -Uvh restStatServer-0.1.0-1.x86_64.rpm
 
 # Usage: 
     restStatServer [port] [threads]
@@ -21,5 +19,4 @@ sudo rpm -Uvh restStatServer-0.1.0-1.x86_64.rpm
 
 # Examples:
        sudo restStatServer
-       
        restStatServer 8080 4
