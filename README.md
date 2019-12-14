@@ -23,6 +23,7 @@ you should have superuser permissions.
 
 Otherwise you can execute application on underprivileged ports > 1024
 
-Examples:
+# Examples:
        sudo restStatServer
+       
        restStatServer 8080 4
